@@ -13,6 +13,8 @@ public class TapeMeasure extends OpMode {
     DcMotor armextend;
     DcMotor armrotate;
 
+    int nathan;
+
     @Override
      public void init() {
         leftdrive = hardwareMap.dcMotor.get("leftdrive");
@@ -24,7 +26,7 @@ public class TapeMeasure extends OpMode {
 
         armrotate.setChannelMode(DcMotorController.RunMode.RESET_ENCODERS);
         armrotate.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-
+        nathan = 0;
     }
     @Override
     public void loop() {
@@ -47,8 +49,17 @@ public class TapeMeasure extends OpMode {
 
         if(gamepad1.dpad_left)
 
-        if(gamepad1.)
-
+        if(gamepad1.dpad_up && !gamepad1.dpad_down && nathan < 4) {
+            nathan = 1;
+            armrotate.setTargetPosition(140*nathan);
+            armrotate.setPower(.5);
+        } else if(gamepad1.dpad_down && !gamepad1.dpad_up && nathan > 0) {
+            nathan -=1;
+            armrotate.setTargetPosition(140*nathan);
+            armrotate.setPower(.5);
+        }
     }
 
 }
+
+
