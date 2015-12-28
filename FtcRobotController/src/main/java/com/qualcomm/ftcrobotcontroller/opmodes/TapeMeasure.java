@@ -37,7 +37,6 @@ public class TapeMeasure extends OpMode {
 
         leftdrive.setPower(lefty);
         rightdrive.setPower(righty);
-        //NOTEST
 
         if(gamepad1.left_bumper && !gamepad1.right_bumper) {
             armextend.setPower(1);
