@@ -23,39 +23,45 @@ public class TapeMeasure extends OpMode {
         armrotate = hardwareMap.dcMotor.get("armrotate");
 
         rightdrive.setDirection(DcMotor.Direction.REVERSE);
-
         armrotate.setChannelMode(DcMotorController.RunMode.RESET_ENCODERS);
-        armrotate.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
         nathan = 0;
     }
     @Override
     public void loop() {
         float lefty = gamepad1.left_stick_y;
         float righty = gamepad1.right_stick_y;
-        //float ltrigger = gamepad1.left_trigger;aqwertyu8i9oplkmnbvczASDRFTGHYUJKLT
-        //float rtrigger = gamepad1.right_trigger;
 
         leftdrive.setPower(lefty);
         rightdrive.setPower(righty);
 
-        if(gamepad1.left_bumper && !gamepad1.right_bumper) {
+
+        if(gamepad2.left_bumper && !gamepad2.right_bumper) {
             armextend.setPower(1);
-        } else if(gamepad1.right_bumper && !gamepad1.left_bumper) {
+        } else if(gamepad2.right_bumper && !gamepad2.left_bumper) {
             armextend.setPower(-1);
         } else {
             armextend.setPower(0);
         }
 
-        if(gamepad1.dpad_left)
+        if(gamepad2.a && !gamepad2.b) {
+            nathan += 1;
+            armrotate.setTargetPosition(100);
+            armrotate.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+            armrotate.setPower(0.5);
+        } else if(gamepad2.b && !gamepad2.a) {
+            nathan -= 1;
+            armrotate.setTargetPosition(10);
+            armrotate.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+            armrotate.setPower(0.5);
+        }
 
-        if(gamepad1.dpad_up && !gamepad1.dpad_down && nathan < 4) {
-            nathan = 1;
-            armrotate.setTargetPosition(140*nathan);
-            armrotate.setPower(.5);
-        } else if(gamepad1.dpad_down && !gamepad1.dpad_up && nathan > 0) {
-            nathan -=1;
-            armrotate.setTargetPosition(140*nathan);
-            armrotate.setPower(.5);
+        if(gamepad1.x) {
+            leftdrive.setPowerFloat();
+            rightdrive.setPowerFloat();
+        }
+        if(gamepad1.y) {
+            leftdrive.setPower(-0.5);
+            rightdrive.setPower(-0.5);
         }
     }
 
