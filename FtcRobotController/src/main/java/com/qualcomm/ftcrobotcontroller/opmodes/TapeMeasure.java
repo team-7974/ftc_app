@@ -12,6 +12,8 @@ public class TapeMeasure extends OpMode {
     DcMotor rightdrive;
     DcMotor armextend;
     DcMotor armrotate;
+    DcMotor backleft;
+    DcMotor backright;
 
     @Override
      public void init() {
@@ -19,8 +21,11 @@ public class TapeMeasure extends OpMode {
         rightdrive = hardwareMap.dcMotor.get("rightdrive");
         armextend = hardwareMap.dcMotor.get("armextend");
         armrotate = hardwareMap.dcMotor.get("armrotate");
+        backleft = hardwareMap.dcMotor.get("backleft");
+        backright = hardwareMap.dcMotor.get("backright");
 
         rightdrive.setDirection(DcMotor.Direction.REVERSE);
+        backright.setDirection(DcMotor.Direction.REVERSE);
         armrotate.setChannelMode(DcMotorController.RunMode.RESET_ENCODERS);
     }
     @Override
@@ -30,6 +35,8 @@ public class TapeMeasure extends OpMode {
 
         leftdrive.setPower(lefty);
         rightdrive.setPower(righty);
+        backleft.setPower(lefty);
+        backright.setPower(righty);
 
 
         if(gamepad2.left_bumper && !gamepad2.right_bumper) {
@@ -57,6 +64,8 @@ public class TapeMeasure extends OpMode {
         if(gamepad1.x) {
             leftdrive.setPowerFloat();
             rightdrive.setPowerFloat();
+            backleft.setPowerFloat();
+            backright.setPowerFloat();
         }
         if(gamepad1.y) {
             leftdrive.setPower(-0.5);
