@@ -56,7 +56,7 @@ public class TapeMeasure extends OpMode {
             armrotate.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
             armrotate.setPower(0.05);
         } else if(gamepad2.x) {
-            armrotate.setTargetPosition(117);
+            armrotate.setTargetPosition(115);
             armrotate.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
             armrotate.setPower(0.05);
         }
@@ -70,6 +70,8 @@ public class TapeMeasure extends OpMode {
         if(gamepad1.y) {
             leftdrive.setPower(-0.5);
             rightdrive.setPower(-0.5);
+            backleft.setPower(-0.5);
+            backright.setPower(-0.5);
         }
     }
 
