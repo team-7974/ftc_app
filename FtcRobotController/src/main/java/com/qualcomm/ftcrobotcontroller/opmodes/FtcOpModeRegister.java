@@ -57,6 +57,7 @@ public class FtcOpModeRegister implements OpModeRegister {
 
     manager.register("NullOp", NullOp.class);
     manager.register("Tape Measure", TapeMeasure.class);
+    manager.register("Autonomous 1", autoTape.class);
     /*
      * Uncomment any of the following lines if you want to register an op mode.
      */

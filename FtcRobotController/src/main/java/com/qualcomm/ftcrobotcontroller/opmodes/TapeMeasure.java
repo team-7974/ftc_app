@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 
 /**
- * Created by eddie on 12/18/15.
+ * Created by Riley S. Jensen on 12/18/15.
  */
 public class TapeMeasure extends OpMode {
     DcMotor leftdrive;
@@ -56,7 +56,7 @@ public class TapeMeasure extends OpMode {
             armrotate.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
             armrotate.setPower(0.05);
         } else if(gamepad2.x) {
-            armrotate.setTargetPosition(115);
+            armrotate.setTargetPosition(120);
             armrotate.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
             armrotate.setPower(0.05);
         }
