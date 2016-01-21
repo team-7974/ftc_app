@@ -25,10 +25,10 @@ public class autoTape extends LinearOpMode {
         rightdrive.setTargetPosition((int)(drive_right*magic));
         backleft.setTargetPosition((int)(drive_left*magic));
         backright.setTargetPosition((int)(drive_right*magic));
-        rightdrive.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        leftdrive.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        backleft.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        backright.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        rightdrive.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        leftdrive.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        backleft.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        backright.setMode(DcMotorController.RunMode.RUN_TO_POSITION);
         leftdrive.setPower(mpow);
         rightdrive.setPower(mpow);
         backleft.setPower(mpow);
@@ -48,7 +48,7 @@ public class autoTape extends LinearOpMode {
 
         rightdrive.setDirection(DcMotor.Direction.REVERSE);
         backright.setDirection(DcMotor.Direction.REVERSE);
-        armrotate.setChannelMode(DcMotorController.RunMode.RESET_ENCODERS);
+        armrotate.setMode(DcMotorController.RunMode.RESET_ENCODERS);
 
         waitForStart();
 
