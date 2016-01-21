@@ -7,6 +7,9 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
 /**
  * Created by eddie on 1/15/16.
  */
+
+
+
 public class autoTape extends LinearOpMode {
     DcMotor leftdrive;
     DcMotor rightdrive;
@@ -15,9 +18,26 @@ public class autoTape extends LinearOpMode {
     DcMotor backleft;
     DcMotor backright;
 
-    public void runOpMode {
+    public double magic = 114.591559026;
 
-        int drive_dist = 1440;
+    public void marshall(int drive_left, int drive_right, double mpow){
+        leftdrive.setTargetPosition((int)(drive_left*magic));
+        rightdrive.setTargetPosition((int)(drive_right*magic));
+        backleft.setTargetPosition((int)(drive_left*magic));
+        backright.setTargetPosition((int)(drive_right*magic));
+        rightdrive.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        leftdrive.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        backleft.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        backright.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
+        leftdrive.setPower(mpow);
+        rightdrive.setPower(mpow);
+        backleft.setPower(mpow);
+        backright.setPower(mpow);
+
+    }
+
+
+    public void runOpMode() {
 
         leftdrive = hardwareMap.dcMotor.get("leftdrive");
         rightdrive = hardwareMap.dcMotor.get("rightdrive");
@@ -30,21 +50,10 @@ public class autoTape extends LinearOpMode {
         backright.setDirection(DcMotor.Direction.REVERSE);
         armrotate.setChannelMode(DcMotorController.RunMode.RESET_ENCODERS);
 
-        //wait(5);
+        waitForStart();
 
-        leftdrive.setTargetPosition(drive_dist);
-        rightdrive.setTargetPosition(drive_dist);
-        backleft.setTargetPosition(drive_dist);
-        backright.setTargetPosition(drive_dist);
-        rightdrive.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        leftdrive.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        backleft.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        backright.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        leftdrive.setPower(0.5);
-        rightdrive.setPower(0.5);
-        backleft.setPower(0.5);
-        backright.setPower(0.5);
-        
+        marshall(42, 42, 0.5);
+
     }
 
 }
